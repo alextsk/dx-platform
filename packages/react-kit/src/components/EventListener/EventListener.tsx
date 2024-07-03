@@ -47,14 +47,18 @@ export class EventListener extends React.Component<TEventListenerProps> {
 	private addListeners() {
 		const target = this.getTarget();
 		const handlers = this.getHandlers();
-		Object.keys(handlers).forEach(key => {
-			const capture = key.endsWith(CAPTURE_MARKER);
-			const handler = handlers[key];
-			const eventName = getEventName(key, capture);
-			const isTouchEvent = ['touchcancel', 'touchend', 'touchmove', 'touchstart'].includes(eventName);
-			const options = isTouchEvent ? { capture, passive: false } : { capture };
-			target.addEventListener(eventName, handler as any, options);
-		});
+		setTimeout(
+			() =>
+				Object.keys(handlers).forEach(key => {
+					const capture = key.endsWith(CAPTURE_MARKER);
+					const handler = handlers[key];
+					const eventName = getEventName(key, capture);
+					const isTouchEvent = ['touchcancel', 'touchend', 'touchmove', 'touchstart'].includes(eventName);
+					const options = isTouchEvent ? { capture, passive: false } : { capture };
+					target.addEventListener(eventName, handler as any, options);
+				}),
+			0,
+		);
 	}
 
 	private removeListeners() {

@@ -4,6 +4,9 @@
   "description": "",
   "main": "dist",
   "module": "dist",
+  "browser": {
+    "[@devexperts/react-kit]": false   
+  } ,
   "scripts": {
     "lint": "eslint ./**/*.{ts,tsx}",
     "lint:fix": "yarn lint --fix",
@@ -11,7 +14,7 @@
     "build": "dx-tools build-lib src dist --failOnError --project tsconfig.build.json",
     "clean": "dx-tools clean dist",
     "prepare": "yarn clean && yarn build",
-    "start": "dx-tools storybook",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider dx-tools storybook",
     "watch": "dx-tools build-lib src dist -w --project tsconfig.build.json",
     "storybook:build": "build-storybook -o .out -c ../../node_modules/@devexperts/tools/dist/config/storybook",
     "storybook:deploy": "storybook-to-ghpages --ci --existing-output-dir=.out --host-token-env-variable=GITHUB_TOKEN",
@@ -40,7 +43,6 @@
     "date-fns": "^1.29.0",
     "element-resize-detector": "^1.1.12",
     "hoist-non-react-statics": "^2.5.0",
-    "react-css-themr": "2.1.2",
     "react-dnd": "2.6.0",
     "react-dnd-html5-backend": "2.6.0",
     "rxjs": "^6.5.4",
@@ -48,10 +50,10 @@
     "typelevel-ts": "^0.3.5"
   },
   "peerDependencies": {
-    "@types/react": "^16.9.2",
-    "@types/react-dom": "^16.9.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "@types/react": "17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "react": "17.0.0",
+    "react-dom": "17.0.0"
   },
   "devDependencies": {
     "@devexperts/tools": "^1.0.0-alpha.14",
@@ -72,7 +74,17 @@
     "fp-ts": "^2.0.5",
     "jsdom": "^15.1.1",
     "jsdom-global": "^3.0.2",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "resolutions": {
+    "fp-ts": "2.16.0",
+    "@types/react-dom": "17.0.25", 
+    "@types/react": "^17.0.0",
+    "react": "^17.0.0",
+    "react-dom": "17.0.0",
+    "eslint-plugin-react": "7.33.2",
+    "@typescript-eslint/eslint-plugin": "6.7.5",
+    "@typescript-eslint/parser": "6.7.5"
   }
 }
